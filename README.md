@@ -87,6 +87,8 @@ ManagerService o-- ManagerDao
 EmployeeService o-- EmployeeDao
 ManagerController o-- ManagerService
 EmployeeController o-- EmployeeService
+
+
 ```
 # ERD
 
@@ -197,7 +199,7 @@ erDiagram
 # UML
 ```mermaid
 classDiagram
-class cycel{
+class Cycle{
 <<singleton>>
 -startDate: DateTime
 -duration: int 
@@ -279,6 +281,17 @@ class TeamManagerController{
 UserController <|--CompanyManagerController
 UserController <|--TeamManagerController
 CompanyManagerService o-- CompanyManagerController
+UserService o-- UserController
+TeamManagerService o-- TeamManagerController
+CycleDao o-- UserService
+RatingsDao o-- UserService
+ObjectiveDao o-- UserService
+ObjectiveDao o-- TeamManagerService
+CycleDao o-- CompanyManager
+CompanyManagerService ..>Cycle
+
+
+
 ```
 
 # ERD
