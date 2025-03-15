@@ -47,20 +47,12 @@ class UserHistory{
 class UserRepository{
 <<interface>>
 +getuserHistory():List<User>
-}
-class EmployeeRepository{
-<<interface>>
-+findUserById():UserProjection
-}
-class ManagerRepository{
-<<interface>>
 +findUserById():User
 +addUser():void
 +deleteUser():void
 + updateUser(): void
-+ viewEmployeeHistory():List<User>
++findUserById():UserProjection
 }
-
 class EmployeeService{
 +findUserById():UserProjection
 }
@@ -81,10 +73,8 @@ class ManagerController{
 + deletUser(): void
 +viewEmployeeHistory(): List<User>
 }
-UserRepository <|--EmployeeRepository
-UserRepository <|--ManagerRepository
-ManagerService o-- ManagerRepository
-EmployeeService o-- EmployeeRepository
+ManagerService o-- UserRepository
+EmployeeService o-- UserRepository
 ManagerController o-- ManagerService
 EmployeeController o-- EmployeeService
 
