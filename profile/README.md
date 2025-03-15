@@ -44,15 +44,15 @@ class UserHistory{
 -departmentId: long
 -salaryGross: float
 }
-class UserDao{
+class UserRepository{
 <<interface>>
 +getuserHistory():List<User>
 }
-class EmployeeDao{
+class EmployeeRepository{
 <<interface>>
 +findUserById():UserProjection
 }
-class ManagerDao{
+class ManagerRepository{
 <<interface>>
 +findUserById():User
 +addUser():void
@@ -81,10 +81,10 @@ class ManagerController{
 + deletUser(): void
 +viewEmployeeHistory(): List<User>
 }
-UserDao <|--EmployeeDao
-UserDao <|--ManagerDao
-ManagerService o-- ManagerDao
-EmployeeService o-- EmployeeDao
+UserRepository <|--EmployeeRepository
+UserRepository <|--ManagerRepository
+ManagerService o-- ManagerRepository
+EmployeeService o-- EmployeeRepository
 ManagerController o-- ManagerService
 EmployeeController o-- EmployeeService
 
@@ -150,7 +150,7 @@ class UserDto {
   +department: String
 }
 
-class TeamDao {
+class TeamRepository {
   <<interface>>
   +createTeam(): void 
   +assignManager(): void
@@ -178,7 +178,7 @@ class TeamController {
   +removeMember(): void
 }
 
-TeamService o-- TeamDao
+TeamService o-- TeamRepository
 TeamController o-- TeamService
 
 ```
@@ -231,17 +231,17 @@ Open
 Passed 
 Closed
 }
-class CycleDao{
+class CycleRepository{
 <<interface>>
 +openCycle
 +closeCycle
 +viewCycle():Cycle
 }
-class RatingsDao{
+class RatingsRepository{
 <<interface>>
 + evaluateMember():void
 }
-class ObjectiveDao{
+class ObjectiveRepository{
 <<interface>>
 +assignObjective():void
 +viewObjectives():List<Objective>
@@ -283,11 +283,11 @@ UserController <|--TeamManagerController
 CompanyManagerService o-- CompanyManagerController
 UserService o-- UserController
 TeamManagerService o-- TeamManagerController
-CycleDao o-- UserService
-RatingsDao o-- UserService
-ObjectiveDao o-- UserService
-ObjectiveDao o-- TeamManagerService
-CycleDao o-- CompanyManager
+CycleRepository o-- UserService
+RatingsRepository o-- UserService
+ObjectiveRepository o-- UserService
+ObjectiveRepository o-- TeamManagerService
+CycleRepository o-- CompanyManager
 CompanyManagerService ..>Cycle
 
 
