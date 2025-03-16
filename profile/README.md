@@ -277,7 +277,7 @@ CycleRepository o-- UserService
 RatingsRepository o-- UserService
 ObjectiveRepository o-- UserService
 ObjectiveRepository o-- TeamManagerService
-CycleRepository o-- CompanyManager
+CycleRepository o-- CompanyManagerService
 CompanyManagerService ..>Cycle
 
 
