@@ -106,7 +106,7 @@ User {
     Department{
           long id pk
           long companyId fk
-          string location
+          string name
     }
     UserHistory{
         long id pk
