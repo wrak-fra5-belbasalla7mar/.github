@@ -319,7 +319,37 @@ Ratings ||--o{Cycle : "belongs to"
 KPI ||--o{Cycle : "belongs to" 
 ```
 ## Attendance API 
+# UML
+```mermaid
+classDiagram
+class AttendanceStatus{
+<<enumeration>>
+Absent
+Remote
+On-site
+}
 
+class VacationStatus{
+<<enumeration>>
+Pending
+Approved
+Rejected 
+}
+class Vacation{
+-id: int
+-userId: int
+-startDate: DateTime
+-endDate: DateTime
+-status: VacationStatus
+}
+class Attendance{
+-userId: int
+-date: DateTime
+-status: AttendanceStatus 
+}
+
+
+```
 # ERD
 ```mermaid
 erDiagram
