@@ -369,6 +369,103 @@ Time departure
 String location
 }
 ```
+## Job Requirements API 
+# UML
+```mermaid
+classDiagram
+    class JobOpening {
+        +Long jobId
+        +String title
+        +String department
+        +String location
+        +String description
+        +String requirements
+        +Long createdBy
+        +LocalDateTime createdAt
+        +JobStatus status
+    }
 
-        
-          
+    class JobApplication {
+        +Long applicationId
+        +JobOpening job
+        +Long userId
+        +String cvFile
+        +LocalDateTime submittedAt
+    }
+
+    class JobStatus {
+        <<enumeration>>
+        OPEN
+        CLOSED
+    }
+
+    class JobOpeningRepository {
+        <<interface>>
+        +createJob(): void
+        +getJobs(): List<JobOpening>
+        +getJobById(): JobOpening
+        +updateJob(): void
+        +deleteJob(): void
+    }
+
+    class JobApplicationRepository {
+        <<interface>>
+        +applyForJob(): void
+        +getApplications(): List<JobApplication>
+        +deleteApplication(): void
+        +getCvFile(): File
+    }
+
+    class JobService {
+        +createJob(): JobOpening
+        +getJobs(): List<JobOpening>
+        +getJobById(): JobOpening
+        +updateJob(): JobOpening
+        +deleteJob(): void
+        +applyForJob(): JobApplication
+        +getApplications(): List<JobApplication>
+        +deleteApplication(): void
+        +getCvFile(): File
+    }
+
+    class JobController {
+        +createJob(): JobOpening
+        +getJobs(): List<JobOpening>
+        +getJobById(): JobOpening
+        +updateJob(): JobOpening
+        +deleteJob(): void
+        +applyForJob(): JobApplication
+        +getApplications(): List<JobApplication>
+        +deleteApplication(): void
+        +downloadCV(): Resource
+    }
+
+    JobOpening "1" --> "0..*" JobApplication : has
+    JobOpening --> JobStatus : uses
+    JobService o-- JobOpeningRepository
+    JobService o-- JobApplicationRepository
+    JobController o-- JobService
+```
+# ERD
+```mermaid
+erDiagram
+    JOB_OPENINGS ||--o{ JOB_APPLICATIONS : "has"
+    JOB_OPENINGS {
+        bigint job_id PK
+        varchar title
+        varchar department
+        varchar location
+        text description
+        text requirements
+        bigint created_by
+        timestamp created_at
+        enum status
+    }
+    JOB_APPLICATIONS {
+        bigint application_id PK
+        bigint job_id FK
+        bigint user_id
+        varchar cv_file
+        timestamp submitted_at
+    }
+```
