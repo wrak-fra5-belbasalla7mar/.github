@@ -369,7 +369,7 @@ Time departure
 String location
 }
 ```
-## Job Requirements API 
+## Hiring API
 # UML
 ```mermaid
 classDiagram
