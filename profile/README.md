@@ -359,14 +359,14 @@ long userId
 long TeamId
 DateTime start
 DateTime end
-string status
+string statusType "ENUM('Pending', 'Approved', 'Rejected')"
 }
 Attendance{
 long UserId pk 
 Date day pk
 Time arrival
 Time departure 
-String location
+String location "ENUM (Absent, 'Remote', 'On-site')"
 }
 ```
 ## Hiring API
