@@ -328,13 +328,28 @@ Absent
 Remote
 On-site
 }
-
-class VacationStatus{
-<<enumeration>>
-Pending
-Approved
-Rejected 
+class AttendanceService{
++ setDailyStatus() Attendance
++ getDailyStatus() Attendance
++ getWeeklyStatus() List<Attendance>
 }
+class AttendanceController{
++ setDailyStatus () Attendance
++ getDailyStatus () Attendance
++ getWeeklyStatus() List<Attendance>
+}
+class AttendanceRepository{
+<<interface>>
++ findByUserIdAndDate Attendance
++ findByUserIdAndDateBetween Attendance
+}
+
+class Attendance{
+-userId: int
+-date: DateTime
+-status: AttendanceStatus 
+}
+
 class Vacation{
 -id: int
 -userId: int
@@ -342,12 +357,14 @@ class Vacation{
 -endDate: DateTime
 -status: VacationStatus
 }
-class Attendance{
--userId: int
--date: DateTime
--status: AttendanceStatus 
+class VacationStatus{
+<<enumeration>>
+Pending
+Approved
+Rejected 
 }
-
+AttendanceController o-- AttendanceService
+AttendanceService o-- AttendanceRepository
 
 ```
 # ERD
