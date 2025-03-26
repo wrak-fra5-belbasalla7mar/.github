@@ -329,7 +329,7 @@ Remote
 On-site
 }
 class AttendanceService{
-+ setDailyStatus() Attendance
++ setDailyStatus() Void
 + getDailyStatus() Attendance
 + getWeeklyStatus() List<Attendance>
 }
