@@ -333,6 +333,15 @@ class AttendanceService{
 + getDailyStatus() Attendance
 + getWeeklyStatus() List<Attendance>
 }
+class UserDTO{
+-userId: int
+-name: String
+-department: String 
+}
+class AttendanceResponseDTO{
+-userDto: UserDTO
+-attendanceList: List<Attendance>
+}
 class AttendanceController{
 + setDailyStatus () Attendance
 + getDailyStatus () Attendance
@@ -362,6 +371,12 @@ class VacationStatus{
 Pending
 Approved
 Rejected 
+}
+class VacationService{
++requestVacation(): void
++approveVacation(): void
++rejectVacation(): void
++getTeamVacations(): List<VacationRequest>
 }
 AttendanceController o-- AttendanceService
 AttendanceService o-- AttendanceRepository
